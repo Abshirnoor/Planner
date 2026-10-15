@@ -111,7 +111,7 @@
   const $ = (id) => document.getElementById(id);
   const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   const store = { get: (k) => { try { return localStorage.getItem(k); } catch { return null; } }, set: (k, v) => { try { v == null ? localStorage.removeItem(k) : localStorage.setItem(k, v); } catch {} } };
-  const monthLabel = (m) => new Date(`${m}-15T12:00`).toLocaleDateString(undefined, { month: "long" });
+  const monthLabel = (m) => state?.videos?.[m]?.label ?? new Date(`${m.slice(0, 7)}-15T12:00`).toLocaleDateString(undefined, { month: "long" });
   const unb64 = (s) => Uint8Array.from(atob(s), (c) => c.charCodeAt(0));
   let state = null;
   let month = null;
